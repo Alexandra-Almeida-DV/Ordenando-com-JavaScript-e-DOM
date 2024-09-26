@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> <!-- a) Alterar a linguagem para pt-br -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ordenando com JavaScript</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link para CSS se necessário -->
+</head>
+
+<style>
+    div label, 
+    div input, 
+    div button,
+    select {
+        margin-bottom: 10px; /* Ajuste a distância conforme necessário */
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="container-h1">
+            <h1>Ordenando Valores</h1>
+    
+            <!-- Campo de entrada numérico -->
+            <div>
+                <label for="valor">Valor</label><br>
+                <input type="number" id="valor" /><br> <!-- c) Campo de entrada numérico -->
+                <button id="button" onclick="add()">Adicionar</button> <!-- d) Botão Adicionar -->
+            </div>
+            <hr>
+            <!-- Campo de seleção de algoritmo -->
+            <div>
+                <select id="algoritmo"> <!-- e) Campo de seleção -->
+                    <option value="bubble_sort" selected>Bubble Sort</option>
+                    <option value="selection_sort">Selection Sort</option>
+                    <option value="quick_sort">Quick Sort</option>
+                </select>
+            </div>
+    
+            <!-- Botões para ordenar e misturar -->
+            <div>
+                <button id="button" onclick="ordenar()">Ordenar</button> <!-- f) Botão Ordenar -->
+                <button id="button" onclick="misturar()">Misturar</button> <!-- g) Botão Misturar -->
+            </div>
+            <hr>
+            <!-- Lista de valores -->
+            <div>
+                <ul id="valores"> <!-- h) Lista (ul) sem opções internas -->
+                </ul>
+            </div>
+        </div>
+    
+        <div class="container-h1">
+            <h1>Ordenando Valores</h1>
+    
+            <!-- Campo de entrada numérico -->
+            <div>
+                <label for="valor2">Valor</label><br>
+                <input type="number" id="valor" /><br> <!-- c) Campo de entrada numérico -->
+                <button  id="button" onclick="add2()">Adicionar</button> <!-- d) Botão Adicionar -->
+            </div>
+            <hr>
+            <!-- Campo de seleção de algoritmo -->
+            <div>
+                <select id="algoritmo"> <!-- e) Campo de seleção -->
+                    <option value="bubble_sort" selected>Bubble Sort</option>
+                    <option value="selection_sort">Selection Sort</option>
+                    <option value="quick_sort">Quick Sort</option>
+                </select>
+            </div>
+    
+            <!-- Botões para ordenar e misturar -->
+            <div>
+                <button id="button" onclick="ordenar2()">Ordenar</button> <!-- f) Botão Ordenar -->
+                <button id="button" onclick="misturar2()">Misturar</button> <!-- g) Botão Misturar -->
+            </div>
+            <hr>
+            <!-- Lista de valores -->
+            <div>
+                <ul id="valores"> <!-- h) Lista (ul) sem opções internas -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="ordenando.js"></script> <!-- b) Incluir biblioteca ordenando.js -->
+
+    <!-- Definindo as funções no estilo clássico -->
+    <script>
+        let array = [];
+
+        // Função para adicionar um número à lista
+        function add() { 
+            const valor = document.getElementById('valor').value;
+            if (valor !== '') {
+                array.push(parseInt(valor));
+                document.getElementById('valores').innerHTML += `<li>${valor}</li>`;
+                document.getElementById('valor').value = ''; // Limpa o campo de entrada
+            }
+        }
+
+        // Função para ordenar o array
+        function ordenar() {
+            const algoritmo = document.getElementById('algoritmo').value;
+            let arrayCopy = [...array]; // Copia o array para não alterar o original
+
+            if (algoritmo === 'bubble_sort') {
+                bubble_sort(arrayCopy);
+            } else if (algoritmo === 'selection_sort') {
+                selection_sort(arrayCopy);
+            } else if (algoritmo === 'quick_sort') {
+                quick_sort(arrayCopy);
+            }
+
+            // Atualiza a lista ordenada
+            atualizarLista(arrayCopy);
+        }
+
+        // Função para misturar o array
+        function misturar() {
+            let arrayCopy = [...array];
+            shuffle(arrayCopy, arrayCopy.length); // Embaralha o array
+            atualizarLista(arrayCopy);
+        }
+
+        // Função para atualizar a lista exibida na tela
+        function atualizarLista(arr) {
+            const ul = document.getElementById('valores');
+            ul.innerHTML = ''; // Limpa a lista
+            arr.forEach(valor => {
+                ul.innerHTML += `<li>${valor}</li>`;
+            });
+        }
+    </script>
+
+</body>
+</html>
