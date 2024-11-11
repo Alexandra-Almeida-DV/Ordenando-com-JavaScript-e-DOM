@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR"> <!-- a) Alterar a linguagem para pt-br -->
+<html lang="pt-BR"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ordenando com JavaScript</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link para CSS se necessário -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <style>
@@ -13,7 +13,7 @@
     div input, 
     div button,
     select {
-        margin-bottom: 10px; /* Ajuste a distância conforme necessário */
+        margin-bottom: 10px;
     }
 </style>
 
@@ -22,90 +22,75 @@
         <div class="container-h1">
             <h1>Ordenando Valores</h1>
     
-            <!-- Campo de entrada numérico -->
             <div>
                 <label for="valor">Valor</label><br>
-                <input type="number" id="valor" /><br> <!-- c) Campo de entrada numérico -->
-                <button id="button" onclick="add()">Adicionar</button> <!-- d) Botão Adicionar -->
+                <input type="number" id="valor" /><br>
+                <button id="button" onclick="add()">Adicionar</button> 
             </div>
             <hr>
-            <!-- Campo de seleção de algoritmo -->
             <div>
-                <select id="algoritmo"> <!-- e) Campo de seleção -->
+                <select id="algoritmo"> 
                     <option value="bubble_sort" selected>Bubble Sort</option>
                     <option value="selection_sort">Selection Sort</option>
                     <option value="quick_sort">Quick Sort</option>
                 </select>
             </div>
     
-            <!-- Botões para ordenar e misturar -->
             <div>
-                <button id="button" onclick="ordenar()">Ordenar</button> <!-- f) Botão Ordenar -->
-                <button id="button" onclick="misturar()">Misturar</button> <!-- g) Botão Misturar -->
+                <button id="button" onclick="ordenar()">Ordenar</button> 
+                <button id="button" onclick="misturar()">Misturar</button> 
             </div>
             <hr>
-            <!-- Lista de valores -->
             <div>
-                <ul id="valores"> <!-- h) Lista (ul) sem opções internas -->
+                <ul id="valores"> 
                 </ul>
             </div>
         </div>
     
         <div class="container-h1">
             <h1>Ordenando Valores</h1>
-    
-            <!-- Campo de entrada numérico -->
             <div>
                 <label for="valor2">Valor</label><br>
-                <input type="number" id="valor" /><br> <!-- c) Campo de entrada numérico -->
-                <button  id="button" onclick="add2()">Adicionar</button> <!-- d) Botão Adicionar -->
+                <input type="number" id="valor" /><br> 
+                <button  id="button" onclick="add2()">Adicionar</button> 
             </div>
             <hr>
-            <!-- Campo de seleção de algoritmo -->
             <div>
-                <select id="algoritmo"> <!-- e) Campo de seleção -->
+                <select id="algoritmo"> 
                     <option value="bubble_sort" selected>Bubble Sort</option>
                     <option value="selection_sort">Selection Sort</option>
                     <option value="quick_sort">Quick Sort</option>
                 </select>
             </div>
     
-            <!-- Botões para ordenar e misturar -->
             <div>
-                <button id="button" onclick="ordenar2()">Ordenar</button> <!-- f) Botão Ordenar -->
-                <button id="button" onclick="misturar2()">Misturar</button> <!-- g) Botão Misturar -->
+                <button id="button" onclick="ordenar2()">Ordenar</button> 
+                <button id="button" onclick="misturar2()">Misturar</button>
             </div>
             <hr>
-            <!-- Lista de valores -->
             <div>
-                <ul id="valores"> <!-- h) Lista (ul) sem opções internas -->
+                <ul id="valores"> 
                 </ul>
             </div>
         </div>
     </div>
     
 
-    <script src="ordenando.js"></script> <!-- b) Incluir biblioteca ordenando.js -->
-
-    <!-- Definindo as funções no estilo clássico -->
+    <script src="ordenando.js"></script> 
     <script>
         let array = [];
-
-        // Função para adicionar um número à lista
         function add() { 
             const valor = document.getElementById('valor').value;
             if (valor !== '') {
                 array.push(parseInt(valor));
                 document.getElementById('valores').innerHTML += `<li>${valor}</li>`;
-                document.getElementById('valor').value = ''; // Limpa o campo de entrada
+                document.getElementById('valor').value = '';
             }
         }
 
-        // Função para ordenar o array
         function ordenar() {
             const algoritmo = document.getElementById('algoritmo').value;
-            let arrayCopy = [...array]; // Copia o array para não alterar o original
-
+            let arrayCopy = [...array]; 
             if (algoritmo === 'bubble_sort') {
                 bubble_sort(arrayCopy);
             } else if (algoritmo === 'selection_sort') {
@@ -114,21 +99,17 @@
                 quick_sort(arrayCopy);
             }
 
-            // Atualiza a lista ordenada
             atualizarLista(arrayCopy);
         }
 
-        // Função para misturar o array
         function misturar() {
             let arrayCopy = [...array];
-            shuffle(arrayCopy, arrayCopy.length); // Embaralha o array
+            shuffle(arrayCopy, arrayCopy.length);
             atualizarLista(arrayCopy);
         }
-
-        // Função para atualizar a lista exibida na tela
         function atualizarLista(arr) {
             const ul = document.getElementById('valores');
-            ul.innerHTML = ''; // Limpa a lista
+            ul.innerHTML = ''; 
             arr.forEach(valor => {
                 ul.innerHTML += `<li>${valor}</li>`;
             });
